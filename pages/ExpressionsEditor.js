@@ -1,4 +1,5 @@
 import { useState, React, useEffect } from "react";
+
 import { useEditor, EditorContent } from "@tiptap/react";
 import Document from "@tiptap/extension-document";
 import Paragraph from "@tiptap/extension-paragraph";
@@ -47,7 +48,7 @@ const ExpressionsEditor = () => {
     if (messageEvent) {
       setTimeout(() => {
         setMessageEvent(null);
-      }, 800);
+      }, 1881);
     }
   }, [messageEvent]);
 
@@ -79,12 +80,15 @@ const ExpressionsEditor = () => {
       <MenuBar className="richTextMenu" editor={editor} />
       <div className="expression__editor-content"><EditorContent editor={editor} /></div>
       <button className="btn primary upload" onClick={addImage}>Attach</button>
-      <button className="btn primary save" onClick={saveExpression}>Send</button>
-      <button className="btn primary mint" onClick={() => setMessageEvent('You minted your text!')}>Mint</button>
+      <button className="btn primary save" onClick={saveExpression}>Express</button>
+      
+      <button className="btn primary mint" onClick={() => setMessageEvent('Your expression is queued for minting!')}>Mint</button>
+      <button className="btn primary yield" onClick={() => setMessageEvent('Your expression is pooled for yielding!')}>Yield</button>
+
       {
         messageEvent && <Message message={messageEvent} />
       }
-      <ExpressionsList expressions={expressions} />
+      {/* <ExpressionsList expressions={expressions} /> */}
     </div>
   );
 };
