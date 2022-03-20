@@ -9,23 +9,25 @@ import StarterKit from '@tiptap/starter-kit';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBold, faCode, faHeading, faItalic, faParagraph, faStrikethrough, faUndo, faRedo, faList, faListOl } from '@fortawesome/free-solid-svg-icons'
 
-
-
+import Expression4Peace  from '../components/Expression4Peace'
+import QuotesForPeace from '../pages/api/quotes/QuotesForPeace'
 
 const ExpressionsEditor = () => {
   const [txt, setTxt] = useState("");
   const [messageEvent, setMessageEvent] = useState(null);
-  const [expressions, setExpressions] = useState([]);
+  const [textual, setTextual] = useState([]);
 
   const editor = useEditor({
     extensions: [Document, Paragraph, Text, Image, StarterKit],
     content: ``,
   });
 
+
   const saveExpression = () => {
     const text = editor.getText();
     if (text.length > 0) {
-      setExpressions([...expressions, text]);
+      setTextual([...textual, text]);
+      console.log(text)
       setMessageEvent("Expression saved!");
     }
   }
@@ -52,14 +54,14 @@ const ExpressionsEditor = () => {
     }
   }, [messageEvent]);
 
-  // Anytime expressions change, save it to localStorage
+  // Anytime textual change, save it to localStorage
   useEffect(() => {
     // Check if the array is empty
-    if (expressions.length > 0) {
+    if (textual.length > 0) {
       // Save the array to localStorage
-      localStorage.setItem("expressions", JSON.stringify(expressions));
+      localStorage.setItem("textual", JSON.stringify(textual));
     }
-  }, [expressions]);
+  }, [textual]);
 
 
   useEffect(() => {
@@ -68,15 +70,16 @@ const ExpressionsEditor = () => {
       setTxt(text);
     }
 
-    // Get the expressions from localStorage
-    const expressions = JSON.parse(localStorage.getItem("expressions"));
-    if (expressions) {
-      setExpressions(expressions);
+    // Get the textual from localStorage
+    const textual = JSON.parse(localStorage.getItem("textual"));
+    if (textual) {
+      setTextual(textual);
     }
   }, []);
 
   return (
     <div className="expression__editor">
+      {/* <QuotesForPeace/> */}
       <MenuBar className="richTextMenu" editor={editor} />
       <div className="expression__editor-content"><EditorContent editor={editor} /></div>
       <button className="btn primary upload" onClick={addImage}>Attach</button>
@@ -88,7 +91,7 @@ const ExpressionsEditor = () => {
       {
         messageEvent && <Message message={messageEvent} />
       }
-      {/* <ExpressionsList expressions={expressions} /> */}
+      {/* <ExpressionsList textual={textual} /> */}
     </div>
   );
 };
@@ -111,7 +114,6 @@ const MenuBar = ({ editor }) => {
         onClick={() => editor.chain().focus().toggleBulletList().run()}
         className={editor.isActive('bulletList') ? 'btn is-active' : 'btn'}
       >
-
         <FontAwesomeIcon icon={faList} />
 
       </button>
@@ -129,12 +131,12 @@ const MenuBar = ({ editor }) => {
         <FontAwesomeIcon icon={faCode} />
 
       </button>
-      <button
-        className={editor.isActive('paragraph') ? 'btn hider' : 'btn'}
+      {/* <button
+        className={editor.isActive('paragraph') ? 'btn is-active' : 'btn'}
       >
         <FontAwesomeIcon icon={faParagraph} />
 
-      </button>
+      </button> */}
       <button
         onClick={() => editor.chain().focus().toggleBold().run()}
         className={editor.isActive('bold') ? 'btn is-active' : 'btn'}
@@ -186,11 +188,11 @@ const Message = ({ message }) => {
 }
 
 
-const ExpressionsList = ({ expressions }) => {
+const ExpressionsList = ({ textual }) => {
   return (
-    <div className="expressions__list">
+    <div className="textual__list">
       {
-        expressions.map((expression, index) => {
+        textual.map((expression, index) => {
           return (
             <div className="expression__item" key={index}>
               <div className="expression__item-text">{expression}</div>
