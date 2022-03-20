@@ -1,5 +1,6 @@
 import '../styles/globals.css'
 import '../styles/tiptap.scss'
+import '../styles/userProfile.css'
 
 
 function MyApp({ Component, pageProps }) {
