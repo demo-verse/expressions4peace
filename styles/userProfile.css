@@ -281,7 +281,7 @@ button.primary,
   border-radius: 5px;
 }
 
-.footer {
+/* .footer {
   position: absolute;
   max-width: 100%;
   bottom: 0;
@@ -307,7 +307,7 @@ button.primary,
 }
 .footer > div:nth-child(2) {
   justify-content: left;
-}
+} */
 
 @media only screen and (min-width: 60em) {
   /* 960px */

@@ -45,19 +45,24 @@ export default function Home() {
    
 {!session ? <Link href="/MagicLink"><a>
   
-  <FontAwesomeIcon icon={faIdCard} />
-  
+  {/* <FontAwesomeIcon icon={faIdCard}  /> */}
+  Login/Join 
   </a></Link> : 
+<>
 
-<img
-          src={session.user.avatarUrl}
-          alt="Avatar"
-          className="avatar image"
-          style={{ height: 200, width: 200 }}
-        />
+<Draggable>
+<div  className="box">
+  <Widget
+    Component={ExpressionsEditor}
+    width={"60%"}
+    height={"200px"}
+  />
+  {/* <ExpressionsList /> */}
+</div>
 
-//<Account key={session.user.id} session={session} />
-
+</Draggable>
+<Account key={session.user.id} session={session} />
+</>
 }
 </div>
         {/* <Draggable className="box">
@@ -65,16 +70,7 @@ export default function Home() {
         {!session ? <Auth /> : <Account key={session.user.id} session={session} />}
       </div>
       </Draggable> */}
-        <Draggable>
-          <div  className="box">
-            <Widget
-              Component={ExpressionsEditor}
-              width={"60%"}
-              height={"200px"}
-            />
-            {/* <ExpressionsList /> */}
-          </div>
-        </Draggable>
+       
 
         {/* <Draggable> */}
       

@@ -14,6 +14,33 @@ export default function Account({ session }) {
     getProfile()
   }, [session])
 
+
+  async function getAvatarUrl() {
+    try {
+      setLoading(true)
+      const user = supabase.auth.user()
+
+      let { data, error, status } = await supabase
+        .from('profiles')
+        .select(`avatar_url`)
+        .eq('id', user.id)
+        .single()
+
+      if (error && status !== 406) {
+        throw error
+      }
+
+      if (data) {
+        return data.avatar_url
+      }
+    } catch (error) {
+      alert(error.message)
+    } finally {
+      // setLoading(false)
+      console.log("set avatar for user: ", user.id);
+    }
+  }
+
   async function getProfile() {
     try {
       setLoading(true)
