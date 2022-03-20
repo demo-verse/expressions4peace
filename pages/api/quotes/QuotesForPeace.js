@@ -1,5 +1,14 @@
 import { useState, React, useEffect } from "react";
 
+
+// quotes, related to peace, love and hence, quotes of people
+// all, feel free to extend and add other people or theirs if not existed here.
+// they could be as well, parts from lyrics, talks, books, anywhere.
+// with one condition:  their sources/references should be publicly accessible and contained w/ proposal (eg. adding a sound url to )
+// here will contain only verified quotes and will be these on www.demoVer.se
+// as they are referred, all that add expression, will gain
+// $peace, $wisdom, $respect by referring some of those they'd like.
+
 const QuotesForPeace = () => {
   const arrayOfQuotes = [
     "A dream you dream alone is only a dream. A dream you dream together is reality. —Yoko Ono",
