@@ -12,6 +12,7 @@ import Image4Expression from "../components/Image4Expression";
 import Expression4Peace from "../components/Expression4Peace";
 import Account from "../components/Account";
 import QuotesForPeace from '../pages/api/quotes/QuotesForPeace'
+import Link from 'next/link'
 
 const exampleExpressions = [
   {
@@ -78,7 +79,7 @@ export default function Home() {
       <div className="box container" style={{ padding: '50px 0 100px 0' }}>
 
    
-{!session ? <Auth /> : 
+{!session ? <Link href="/MagicLink"><a>Login/Join</a></Link> : 
 <Account key={session.user.id} session={session} />}
 </div>
         {/* <Draggable className="box">
@@ -101,34 +102,32 @@ export default function Home() {
       
                   {/* </Draggable> */}
 
-        <Draggable>
+        {/* <Draggable>
           <div  className="box">
             <h1>here a playlist</h1>
           </div>
-        </Draggable>
+        </Draggable> */}
 
         {/* <Draggable>
           <div>
           <QuotesForPeace/>
           </div>
         </Draggable> */}
-        <label className="button primary block" htmlFor="single">
+        {/* <label className="button primary block" htmlFor="single">
           {uploading ? 'Uploading ...' : 'Upload'}
-        </label>
-        <Draggable>
+        </label> */}
+        {/* <Draggable>
           <div className="box">
-            {/* Add to the body */}
             <Image4Expression
               url={imageForExpressionUrl}
               size={200}
               onUpload={(url) => {
                 setImageForExpressionUrl(url);
-                // updateProfile({ username, website, avatar_url: url });
               }}/>
            
             
           </div>
-        </Draggable>
+        </Draggable> */}
         {/* ... */}
       </main>
 

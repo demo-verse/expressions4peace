@@ -22,7 +22,7 @@ export default function Auth() {
 
   return (
     <div className="row flex flex-center">
-      <div className="col-6 form-widget">
+      <div className="col-3 form-widget">
         <h1 className="header">Come on in!</h1>
         <p className="description">Sign in via magic link with your email below</p>
         <div>

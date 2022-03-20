@@ -1,5 +1,6 @@
 import { useState, React, useEffect } from "react";
 
+import { faBold, faCode, faHeading, faItalic, faParagraph, faStrikethrough, faUndo, faRedo, faList, faListOl } from '@fortawesome/free-solid-svg-icons'
 import { useEditor, EditorContent } from "@tiptap/react";
 import Document from "@tiptap/extension-document";
 import Paragraph from "@tiptap/extension-paragraph";
@@ -7,7 +8,6 @@ import Text from "@tiptap/extension-text";
 import Image from "@tiptap/extension-image";
 import StarterKit from '@tiptap/starter-kit';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBold, faCode, faHeading, faItalic, faParagraph, faStrikethrough, faUndo, faRedo, faList, faListOl } from '@fortawesome/free-solid-svg-icons'
 
 import Expression4Peace  from '../components/Expression4Peace'
 import QuotesForPeace from '../pages/api/quotes/QuotesForPeace'
