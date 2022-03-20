@@ -53,7 +53,7 @@ export default function Home() {
           src={session.user.avatarUrl}
           alt="Avatar"
           className="avatar image"
-          style={{ height: size, width: size }}
+          style={{ height: 200, width: 200 }}
         />
 
 //<Account key={session.user.id} session={session} />
