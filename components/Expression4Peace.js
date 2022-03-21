@@ -1,10 +1,8 @@
-import { useState, useEffect } from 'react'
-import { supabase } from '../utils/SupabaseClient'
- 
+import { useState, useEffect } from "react";
+import { supabase } from "../utils/SupabaseClient";
 
 export default function Expression4Peace() {
-
-    const [expressions, setExpressions] = useState([])
+  const [expressions, setExpressions] = useState([]);
 
   /*
   column names and types for table, 'expressions': 
@@ -16,63 +14,59 @@ export default function Expression4Peace() {
   to_be_minted_at: 
   
 */
-    const [expression, setExpression] = useState(
-        {
-            title: "",
-            textual: "",
-            img_url: "",
-            audio_url: "",
-            mint_now: false,
-            to_be_minted_at: null
-        }
-    )
-const {title, textual,img_url, audio_url, mint_now, to_be_minted_at } = expression
+  const [expression, setExpression] = useState({
+    title: "",
+    textual: "",
+    img_url: "",
+    audio_url: "",
+    mint_now: false,
+    to_be_minted_at: null,
+  });
+  const { title, textual, img_url, audio_url, mint_now, to_be_minted_at } =
+    expression;
 
-useEffect( () => {
-    fetchExpressions()
-}, [])
+  useEffect(() => {
+    fetchExpressions();
+  }, []);
 
-async function fetchExpressions() {
-    const {data} = await supabase
-    .from('expressions')
-    .select();
+  async function fetchExpressions() {
+    const { data } = await supabase.from("expressions").select();
 
     setExpressions(data);
 
     console.log("data", data);
-}
+  }
 
-async function createExpression() {
+  async function createExpression() {
     await supabase
-    .from('expressions')
-    .insert([
-        {title: "", textual,img_url: "", audio_url:"", mint_now:"", to_be_minted_at}
-    ])
-    .single();
+      .from("expressions")
+      .insert([
+        {
+          title: "",
+          textual,
+          img_url: "",
+          audio_url: "",
+          mint_now: "",
+          to_be_minted_at,
+        },
+      ])
+      .single();
     // setExpression({ })
+  }
+
+  // async function deleteExpression (id) {}
+
+  //     return (
+  //         <div className='App'>
+
+  //         </div>
+  //     );
+
+  // //   const [loading, setLoading] = useState(true)
+  // //   const [title, setTitle] = useState(null)
+  // //   const [textualContent, setTextualContent] = useState(null)
+  // //   const [imgUrl, setImgUrl] = useState(null)
+  // //   const [audioUrl, setAudioUrl] = useState(null)
+  // // const [toBeMintedAt, setToBeMintedAt] = useState(null)
+  // // const [mintNow, setMintNow] = useState(false)
 }
-
-
-
-// async function deleteExpression (id) {}
-
-
-//     return (
-//         <div className='App'>
-
-//         </div>
-//     );
-
-
-
-
-
-// //   const [loading, setLoading] = useState(true)
-// //   const [title, setTitle] = useState(null)
-// //   const [textualContent, setTextualContent] = useState(null)
-// //   const [imgUrl, setImgUrl] = useState(null)
-// //   const [audioUrl, setAudioUrl] = useState(null)
-// // const [toBeMintedAt, setToBeMintedAt] = useState(null)
-// // const [mintNow, setMintNow] = useState(false)
-
- }

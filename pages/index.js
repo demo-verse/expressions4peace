@@ -1,28 +1,17 @@
 import Head from "next/head";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faIdCard } from "@fortawesome/free-solid-svg-icons";
 import Image from "next/image";
 import React, { useState, useEffect } from "react";
 import styles from "../styles/Home.module.css";
 import ExpressionsEditor from "./ExpressionsEditor";
-import ReactDOM from "react-dom";
 import Draggable from "react-draggable";
 import { supabase } from "../utils/SupabaseClient";
-import Auth from "../components/Auth";
-import Avatar from "../components/Avatar";
 import CalendarBox from "../components/CalendarBox";
-import SpotifyLogin from "../components/SpotifyConnect";
+import SpotifyPlaylist from "../components/artOfPeace/SpotifyPlaylist";
 
 import Account from "../components/Account";
 import Link from "next/link";
 
 export default function Home() {
-  const [avatarUrl, setAvatarUrl] = useState(null);
-  const [imageForExpressionUrl, setImageForExpressionUrl] = useState(null);
-  const [userExpressing, setUserExpressing] = useState(true);
-
-  const [uploading, setUploading] = useState(false);
-
   const [session, setSession] = useState(null);
 
   useEffect(() => {
@@ -45,21 +34,17 @@ export default function Home() {
           {!session ? (
             <>
               <Link href="/MagicLink">
-                <a>
-                  {/* <FontAwesomeIcon icon={faIdCard}  /> */}
-                  Login/Join
-                </a>
+                <a>Login/Join</a>
               </Link>
-
-              <SpotifyLogin />
+            </>
+          ) : (
+            <>
               <Draggable>
                 <div className="box">
                   <CalendarBox />
                 </div>
               </Draggable>
-            </>
-          ) : (
-            <>
+
               <Draggable>
                 <div className="box">
                   <Widget
@@ -67,50 +52,22 @@ export default function Home() {
                     width={"60%"}
                     height={"200px"}
                   />
-                  {/* <ExpressionsList /> */}
                 </div>
               </Draggable>
-              <Account key={session.user.id} session={session} />
+
+              <Draggable>
+                <div className="box">
+                  <Widget
+                    Component={SpotifyPlaylist}
+                    width={"60%"}
+                    height={"200px"}
+                  />
+                  <Account key={session.user.id} session={session} />
+                </div>
+              </Draggable>
             </>
           )}
         </div>
-        {/* <Draggable className="box">
-      <div className="container" style={{ padding: '50px 0 100px 0' }}>
-        {!session ? <Auth /> : <Account key={session.user.id} session={session} />}
-      </div>
-      </Draggable> */}
-
-        {/* <Draggable> */}
-
-        {/* </Draggable> */}
-
-        {/* <Draggable>
-          <div  className="box">
-            <h1>here a playlist</h1>
-          </div>
-        </Draggable> */}
-
-        {/* <Draggable>
-          <div>
-          <QuotesForPeace/>
-          </div>
-        </Draggable> */}
-        {/* <label className="button primary block" htmlFor="single">
-          {uploading ? 'Uploading ...' : 'Upload'}
-        </label> */}
-        {/* <Draggable>
-          <div className="box">
-            <Image4Expression
-              url={imageForExpressionUrl}
-              size={200}
-              onUpload={(url) => {
-                setImageForExpressionUrl(url);
-              }}/>
-           
-            
-          </div>
-        </Draggable> */}
-        {/* ... */}
       </main>
 
       <footer className={styles.footer}>
@@ -128,14 +85,6 @@ export default function Home() {
     </div>
   );
 }
-
-const ExpressionsList = () => {
-  return <></>;
-};
-
-const ExpressionItem = () => {
-  return <></>;
-};
 
 //  Pass a component into the widget and render
 const Widget = ({ Component, width, height }) => {
