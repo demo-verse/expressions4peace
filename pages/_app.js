@@ -1,6 +1,9 @@
 import '../styles/globals.css'
 import '../styles/tiptap.scss'
 import '../styles/userProfile.css'
+import '../styles/calendar.css'
+
+// import 'react-calendar/dist/Calendar.css';
 
 
 function MyApp({ Component, pageProps }) {

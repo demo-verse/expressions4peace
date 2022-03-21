@@ -1,6 +1,6 @@
 import Head from "next/head";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {faIdCard } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faIdCard } from "@fortawesome/free-solid-svg-icons";
 import Image from "next/image";
 import React, { useState, useEffect } from "react";
 import styles from "../styles/Home.module.css";
@@ -9,28 +9,29 @@ import ReactDOM from "react-dom";
 import Draggable from "react-draggable";
 import { supabase } from "../utils/SupabaseClient";
 import Auth from "../components/Auth";
-import Avatar from "../components/Avatar"
+import Avatar from "../components/Avatar";
+import CalendarBox from "../components/CalendarBox";
+import SpotifyLogin from "../components/SpotifyConnect";
 
 import Account from "../components/Account";
-import Link from 'next/link'
-
+import Link from "next/link";
 
 export default function Home() {
-  const [avatarUrl, setAvatarUrl] = useState(null)
-  const [imageForExpressionUrl, setImageForExpressionUrl] = useState(null)
-  const [userExpressing, setUserExpressing] = useState(true)
+  const [avatarUrl, setAvatarUrl] = useState(null);
+  const [imageForExpressionUrl, setImageForExpressionUrl] = useState(null);
+  const [userExpressing, setUserExpressing] = useState(true);
 
-  const [uploading, setUploading] = useState(false)
+  const [uploading, setUploading] = useState(false);
 
-   const [session, setSession] = useState(null)
+  const [session, setSession] = useState(null);
 
-    useEffect(() => {
-      setSession(supabase.auth.session())
+  useEffect(() => {
+    setSession(supabase.auth.session());
 
-      supabase.auth.onAuthStateChange((_event, session) => {
-        setSession(session)
-      })
-    }, [])
+    supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session);
+    });
+  }, []);
 
   return (
     <div className={styles.container}>
@@ -40,41 +41,48 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
-      <div className="box container" style={{ padding: '50px 0 100px 0' }}>
+        <div className="box container" style={{ padding: "50px 0 100px 0" }}>
+          {!session ? (
+            <>
+              <Link href="/MagicLink">
+                <a>
+                  {/* <FontAwesomeIcon icon={faIdCard}  /> */}
+                  Login/Join
+                </a>
+              </Link>
 
-   
-{!session ? <Link href="/MagicLink"><a>
-  
-  {/* <FontAwesomeIcon icon={faIdCard}  /> */}
-  Login/Join 
-  </a></Link> : 
-<>
-
-<Draggable>
-<div  className="box">
-  <Widget
-    Component={ExpressionsEditor}
-    width={"60%"}
-    height={"200px"}
-  />
-  {/* <ExpressionsList /> */}
-</div>
-
-</Draggable>
-<Account key={session.user.id} session={session} />
-</>
-}
-</div>
+              <SpotifyLogin />
+              <Draggable>
+                <div className="box">
+                  <CalendarBox />
+                </div>
+              </Draggable>
+            </>
+          ) : (
+            <>
+              <Draggable>
+                <div className="box">
+                  <Widget
+                    Component={ExpressionsEditor}
+                    width={"60%"}
+                    height={"200px"}
+                  />
+                  {/* <ExpressionsList /> */}
+                </div>
+              </Draggable>
+              <Account key={session.user.id} session={session} />
+            </>
+          )}
+        </div>
         {/* <Draggable className="box">
       <div className="container" style={{ padding: '50px 0 100px 0' }}>
         {!session ? <Auth /> : <Account key={session.user.id} session={session} />}
       </div>
       </Draggable> */}
-       
 
         {/* <Draggable> */}
-      
-                  {/* </Draggable> */}
+
+        {/* </Draggable> */}
 
         {/* <Draggable>
           <div  className="box">
