@@ -33,10 +33,24 @@ export default function Home() {
         <div className="box container" style={{ padding: "50px 0 100px 0" }}>
           {!session ? (
             <>
-              <Link href="/MagicLink">
+            
+            
+             
+              <Draggable>
+                <div className="box">
+                <Link href="/MagicLink">
                 <a>Login/Join</a>
               </Link>
+                              </div>
+              </Draggable>
+
+              <Draggable>
+                <div className="box">
+                  <CalendarBox />
+                </div>
+              </Draggable>
             </>
+            
           ) : (
             <>
               <Draggable>
@@ -57,11 +71,7 @@ export default function Home() {
 
               <Draggable>
                 <div className="box">
-                  <Widget
-                    Component={<Account key={session.user.id} session={session} />}
-                    width={"100%"}
-                    height={"200px"}
-                  />
+                <Account key={session.user.id} session={session} />
       
                 </div>
               </Draggable>
