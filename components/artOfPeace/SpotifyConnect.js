@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { supabase } from "../../utils/SupabaseClient";
 import Draggable from "react-draggable";
-import SpotifyPlaylist from "./SpotifyPlaylist";
+// import SpotifyPlaylist from "./SpotifyPlaylist";
 
 export default function SpotifyConnect() {
   const [loading, setLoading] = useState(false);
@@ -33,14 +33,14 @@ export default function SpotifyConnect() {
     </>
   ) : (
     <>
+      <Draggable>
+        <div className="box">
       <button className="button block" onClick={() => signOut()}>
         Sign Out
       </button>
-      <Draggable>
-        <div className="box">
-          <Widget Component={SpotifyPlaylist} width={"60%"} height={"200px"} />
-          <Account key={session.user.id} session={session} />
-        </div>
+           {/* <Widget Component={SpotifyPlaylist} width={"60%"} height={"200px"} />
+          <Account key={session.user.id} session={session} /> */}
+        </div> 
       </Draggable>
 
       <Account key={session.user.id} session={session} />
