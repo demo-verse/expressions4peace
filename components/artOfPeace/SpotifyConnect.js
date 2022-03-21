@@ -35,15 +35,13 @@ export default function SpotifyConnect() {
     <>
       <Draggable>
         <div className="box">
-      <button className="button block" onClick={() => signOut()}>
-        Sign Out
-      </button>
-           {/* <Widget Component={SpotifyPlaylist} width={"60%"} height={"200px"} />
+          <button className="button block" onClick={() => signOut()}>
+            Sign Out
+          </button>
+          {/* <Widget Component={SpotifyPlaylist} width={"60%"} height={"200px"} />
           <Account key={session.user.id} session={session} /> */}
-        </div> 
+        </div>
       </Draggable>
-
-      <Account key={session.user.id} session={session} />
     </>
   );
 }

@@ -58,11 +58,11 @@ export default function Home() {
               <Draggable>
                 <div className="box">
                   <Widget
-                    Component={SpotifyPlaylist}
-                    width={"60%"}
+                    Component={<Account key={session.user.id} session={session} />}
+                    width={"100%"}
                     height={"200px"}
                   />
-                  <Account key={session.user.id} session={session} />
+      
                 </div>
               </Draggable>
             </>
