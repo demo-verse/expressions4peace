@@ -176,7 +176,7 @@ label {
 }
 
 input {
-  width: 100%;
+  width: 40%;
   border-radius: 5px;
   border: var(--custom-border);
   padding: 8px;
@@ -260,7 +260,7 @@ button.primary,
 /* Widgets */
 
 .card {
-  width: 100%;
+  width: 50%;
   display: block;
   border: var(--custom-border);
   border-radius: var(--custom-border-radius);

@@ -4,25 +4,18 @@ import { supabase } from "../utils/SupabaseClient";
 export default function Expression4Peace() {
   const [expressions, setExpressions] = useState([]);
 
-  /*
-  column names and types for table, 'expressions': 
-  title: Give the expression a name :text
-  textual: Add textual content :text
-  img_url: Add a link to an image file :text
-  audio_url: Add a link to a sound file :text
-  mint_now: Mint now or give it some time to yield $wisdom :boolean (default: false),
-  to_be_minted_at: 
-  
-*/
+
   const [expression, setExpression] = useState({
     title: "",
     textual: "",
     img_url: "",
     audio_url: "",
-    mint_now: false,
-    to_be_minted_at: null,
+    video_url: "",
+    phase: "",
+    number_of_acks: 0,
+    number_of_recs: 0
   });
-  const { title, textual, img_url, audio_url, mint_now, to_be_minted_at } =
+  const { title, textual, img_url, audio_url, video_url, phase, number_of_acks, number_of_recs } =
     expression;
 
   useEffect(() => {
@@ -37,17 +30,17 @@ export default function Expression4Peace() {
     console.log("data", data);
   }
 
-  async function createExpression() {
+  async function createExpression(expression) {
     await supabase
       .from("expressions")
       .insert([
         {
-          title: "",
-          textual,
-          img_url: "",
-          audio_url: "",
-          mint_now: "",
-          to_be_minted_at,
+          title: expression.title,
+          textual: expression.title,
+          img_url: expression.img_url,
+          audio_url: expression.audio_url,
+          video_url: expression.video_url
+          to_be_minted_at: expression.,
         },
       ])
       .single();

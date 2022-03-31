@@ -11,7 +11,7 @@ export default function Avatar({ url, size, onUpload }) {
 
   async function downloadImage(path) {
     try {
-      const { data, error } = await xxstorage.from("avatars").download(path);
+      const { data, error } = await supabase.storage.from("avatars").download(path);
       if (error) {
         throw error;
       }
@@ -68,7 +68,7 @@ export default function Avatar({ url, size, onUpload }) {
       )}
       <div style={{ width: size }}>
         <label className="button primary block" htmlFor="single">
-          {uploading ? "Uploading ..." : "Upload"}
+          {uploading ? "Uploading ..." : "Change"}
         </label>
         <input
           style={{

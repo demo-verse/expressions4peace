@@ -8,17 +8,22 @@ export default function Account({ session }) {
   const [username, setUsername] = useState(null)
   const [website, setWebsite] = useState(null)
   const [avatar_url, setAvatarUrl] = useState(null)
+  const user = supabase.auth.user()
 
 
   useEffect(() => {
     getProfile()
+    getAvatarUrl()
+  }, [session])
+
+  useEffect(() => {
+    getAvatarUrl()
   }, [session])
 
 
   async function getAvatarUrl() {
     try {
       setLoading(true)
-      const user = supabase.auth.user()
 
       let { data, error, status } = await supabase
         .from('profiles')
@@ -36,7 +41,7 @@ export default function Account({ session }) {
     } catch (error) {
       alert(error.message)
     } finally {
-      // setLoading(false)
+      setLoading(false)
       console.log("set avatar for user: ", user.id);
     }
   }
@@ -44,7 +49,7 @@ export default function Account({ session }) {
   async function getProfile() {
     try {
       setLoading(true)
-      const user = supabase.auth.user()
+      // const user = supabase.auth.user()
 
       let { data, error, status } = await supabase
         .from('profiles')
@@ -97,6 +102,15 @@ export default function Account({ session }) {
   return (
     <div className="form-widget">
       <div>
+
+      <Avatar
+      url={avatar_url}
+      size={150}
+      onUpload={(url) => {
+        setAvatarUrl(url)
+        updateProfile({ username, website, avatar_url: url })
+      }}
+    />
         <label htmlFor="email">Email</label>
         <input id="email" type="text" value={session.user.email} disabled />
       </div>
@@ -119,29 +133,21 @@ export default function Account({ session }) {
         />
       </div>
 
-      <Avatar
-      url={avatar_url}
-      size={150}
-      onUpload={(url) => {
-        setAvatarUrl(url)
-        updateProfile({ username, website, avatar_url: url })
-      }}
-    />
 
       <div>
         <button
-          className="button block primary"
+          className="button  primary"
           onClick={() => updateProfile({ username, website, avatar_url })}
           disabled={loading}
         >
           {loading ? 'Loading ...' : 'Update'}
         </button>
+        <button className="button" onClick={() => supabase.auth.signOut()}>
+          Sign Out
+        </button>
       </div>
 
       <div>
-        <button className="button block" onClick={() => supabase.auth.signOut()}>
-          Sign Out
-        </button>
       </div>
     </div>
   )

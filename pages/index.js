@@ -7,7 +7,6 @@ import Draggable from "react-draggable";
 import { supabase } from "../utils/SupabaseClient";
 import CalendarBox from "../components/CalendarBox";
 import SpotifyPlaylist from "../components/artOfPeace/SpotifyPlaylist";
-
 import Account from "../components/Account";
 import Link from "next/link";
 
@@ -25,17 +24,16 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Expressions4Peace</title>
-        <meta name="description" content="Collaborative Expressions" />
+        <title>Expressions for Peace</title>
+        <meta name="description" content="Expressions for Peace" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      
       <main className={styles.main}>
         <div className="box container" style={{ padding: "50px 0 100px 0" }}>
           {!session ? (
             <>
             
-            
-             
               <Draggable>
                 <div className="box">
                 <Link href="/MagicLink">
@@ -44,20 +42,20 @@ export default function Home() {
                               </div>
               </Draggable>
 
-              <Draggable>
+              {/* <Draggable>
                 <div className="box">
                   <CalendarBox />
                 </div>
-              </Draggable>
+              </Draggable> */}
             </>
             
           ) : (
             <>
-              <Draggable>
+              {/* <Draggable>
                 <div className="box">
                   <CalendarBox />
                 </div>
-              </Draggable>
+              </Draggable> */}
 
               <Draggable>
                 <div className="box">
